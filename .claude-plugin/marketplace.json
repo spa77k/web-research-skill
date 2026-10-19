@@ -1,0 +1,16 @@
+{
+  "name": "web-research-skill",
+  "owner": {
+    "name": "spa77k"
+  },
+  "metadata": {
+    "description": "Web検索と公式情報で裏取りするリサーチ用スキル"
+  },
+  "plugins": [
+    {
+      "name": "web-research",
+      "source": "./",
+      "description": "事実確認・調べものを、Web検索と公式情報の裏取り付きで短く報告するスキル"
+    }
+  ]
+}

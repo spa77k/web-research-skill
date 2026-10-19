@@ -1,0 +1,9 @@
+{
+  "name": "web-research",
+  "description": "事実確認・調べものを、Web検索と公式情報の裏取り付きで短く報告するスキル",
+  "version": "1.1.0",
+  "author": {
+    "name": "spa77k"
+  },
+  "repository": "https://github.com/spa77k/web-research-skill"
+}
