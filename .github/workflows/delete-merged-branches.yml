@@ -1,0 +1,29 @@
+# main に取り込み済みのブランチを自動で削除する（中身はすべて main にあるので何も失われない）
+name: Delete merged branches
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete branches already contained in main
+        run: |
+          git fetch --prune origin '+refs/heads/*:refs/remotes/origin/*'
+          for branch in $(git for-each-ref --format='%(refname:strip=3)' refs/remotes/origin); do
+            case "$branch" in main|HEAD) continue ;; esac
+            if git merge-base --is-ancestor "origin/$branch" origin/main; then
+              echo "Deleting $branch"
+              git push origin --delete "$branch"
+            fi
+          done
